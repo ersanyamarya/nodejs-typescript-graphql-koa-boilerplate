@@ -3,7 +3,7 @@ name: Integrate
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test_pull_request:
@@ -45,10 +45,10 @@ jobs:
     name: Merge pull Request
     needs: [test_pull_request]
     runs-on: ubuntu-latest
-    if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
+    if: github.base_ref == 'main' && github.actor == 'dependabot[bot]'
     steps:
       - name: Merge
-        uses: ridedott/merge-me-action@master
+        uses: ridedott/merge-me-action@v2
         with:
           GITHUB_LOGIN: dependabot[bot]
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -5,7 +5,7 @@ export default {
   hostname: env('HOSTNAME'),
   port: Number.parseInt(env('CONTAINER_PORT', '3000')),
 
-  healthPath: `/${env('APPLICATION_NAME')}${env('HEALTH_CHECK_PATH', '/health')}`,
+  healthPath: `${env('HEALTH_CHECK_PATH', '/health')}`,
 
   log: {
     level: env('LOG_LEVEL', 'info'),
