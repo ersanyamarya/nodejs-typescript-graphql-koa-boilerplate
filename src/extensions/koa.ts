@@ -10,6 +10,8 @@ import serverConfig from '../config/server'
 import requestLoggerMiddleware from '../middlewares/request-logger'
 import errorHandlerMiddleware from '../middlewares/error-handler'
 
+import server from './apollo'
+
 import docRoutes from '../modules/docs/routes'
 import authRoutes from '../modules/auth/routes'
 import { UserObject } from '../modules/auth/types'
@@ -28,12 +30,12 @@ declare module 'koa' {
 }
 export default (logger: Logger, healthChecks?: HealthChecks): Koa => {
   const app = new Koa()
-  app.use(helmet())
-  app.use(requestID())
+  // app.use(helmet())
+  // app.use(requestID())
   app.use(requestLoggerMiddleware(logger))
-  app.use(errorHandlerMiddleware(logger))
+  // app.use(errorHandlerMiddleware(logger))
   app.use(cors({ origin: '*' }))
-  app.use(bodyParser())
+  // app.use(bodyParser())
 
   const router = new Router()
   router.get(`${serverConfig.healthPath}`, async (ctx: Context) => {
@@ -46,8 +48,12 @@ export default (logger: Logger, healthChecks?: HealthChecks): Koa => {
     ctx.body = checks
   })
 
-  app.use(docRoutes.routes())
-  app.use(authRoutes.routes())
+  // server().applyMiddleware({ app })
+  // app.use(docRoutes.routes())
+  // app.use(authRoutes.routes())
+  router.post('/graphql', server().getMiddleware())
+  router.get('/graphql', server().getMiddleware())
+  // app.use(server().getMiddleware())
   app.use(router.routes())
   app.use(router.allowedMethods())
   return app
