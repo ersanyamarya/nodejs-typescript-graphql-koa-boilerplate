@@ -5,7 +5,6 @@ import path from 'path'
 
 import logger from '../../src/utils/logger'
 import httpStatusCode from '../../src/utils/http-status-code'
-import appConfig from '../../src/config/app'
 import koaExtension from '../../src/extensions/koa'
 
 config({ path: path.resolve(process.cwd(), '../../.env.application') })

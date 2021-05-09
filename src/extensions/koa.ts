@@ -1,19 +1,13 @@
-import Koa, { Context, BaseContext } from 'koa'
-import bodyParser from 'koa-bodyparser'
-import helmet from 'koa-helmet'
-import requestID from 'koa-requestid'
+import Koa, { Context } from 'koa'
 import cors from 'koa2-cors'
 import Router from 'koa-router'
 import { Logger } from 'log4js'
 import serverConfig from '../config/server'
 
 import requestLoggerMiddleware from '../middlewares/request-logger'
-import errorHandlerMiddleware from '../middlewares/error-handler'
 
 import server from './apollo'
 
-import docRoutes from '../modules/docs/routes'
-import authRoutes from '../modules/auth/routes'
 import { UserObject } from '../modules/auth/types'
 interface HealthCheck {
   connected?: boolean

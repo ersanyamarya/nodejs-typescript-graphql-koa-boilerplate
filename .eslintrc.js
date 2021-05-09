@@ -13,7 +13,6 @@ module.exports = {
     'koa',
     'standard',
     'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
     'prettier/standard',
   ],
