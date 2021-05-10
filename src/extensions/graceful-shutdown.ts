@@ -70,19 +70,13 @@ const shutdown = async (server: Server, sockets: SocketsMap, logger: Logger, onS
 export default (server: Server, logger: Logger, onShutdown?: Function): void => {
   const sockets: SocketsMap = getSockets(server)
 
-  process.on(
-    'SIGINT',
-    async (): Promise<void> => {
-      logger.info('Got SIGINT. Graceful shutdown')
-      await shutdown(server, sockets, logger, onShutdown)
-    }
-  )
+  process.on('SIGINT', async (): Promise<void> => {
+    logger.info('Got SIGINT. Graceful shutdown')
+    await shutdown(server, sockets, logger, onShutdown)
+  })
 
-  process.on(
-    'SIGTERM',
-    async (): Promise<void> => {
-      logger.info('Got SIGTERM. Graceful shutdown')
-      await shutdown(server, sockets, logger, onShutdown)
-    }
-  )
+  process.on('SIGTERM', async (): Promise<void> => {
+    logger.info('Got SIGTERM. Graceful shutdown')
+    await shutdown(server, sockets, logger, onShutdown)
+  })
 }

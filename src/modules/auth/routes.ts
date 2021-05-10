@@ -6,7 +6,7 @@ import httpStatusCode from '../../utils/http-status-code'
 import createUser from './handlers/create-user'
 import login from './handlers/login'
 
-import { getAllUsers, updateRole } from './handlers/admin-users'
+import { getAllUsers } from './handlers/admin-users'
 
 import { createUserValidation, loginValidation, updateRoleValidation } from './validations'
 
@@ -49,7 +49,7 @@ router.patch(
   async ctx => {
     ctx.body = {
       message: `Updated Role ✅`,
-      data: await updateRole(ctx.params),
+      // data: await updateRole(ctx.params),
     }
     ctx.status = httpStatusCode.OK
   }
