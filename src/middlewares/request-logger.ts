@@ -6,6 +6,6 @@ export default (logger: Logger) =>
     await next()
     const elapsed = Date.now() - started + 'ms'
 
-    const msg = `${ctx.method}: ${ctx.url} - ${ctx.status} | ${ctx.type} | [${ctx.state.id}] [${elapsed}]`
+    const msg = `${ctx.method}: ${ctx.url} - ${ctx.status} | ${ctx.type} | [${elapsed}]`
     logger.debug(msg)
   }

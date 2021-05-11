@@ -1,23 +1,11 @@
-import { ApolloServer, gql } from 'apollo-server-koa'
+import { ApolloServer } from 'apollo-server-koa'
+import schema from '../resources'
 
 export default (): ApolloServer => {
-  const typeDefs = gql`
-    type Query {
-      hello: String
-    }
-  `
-
-  const resolvers = {
-    Query: {
-      hello: () => 'Hello world!',
-    },
-  }
-
   return new ApolloServer({
     debug: true,
     playground: true,
     tracing: true,
-    resolvers,
-    typeDefs,
+    schema,
   })
 }
