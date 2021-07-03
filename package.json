@@ -40,7 +40,7 @@
     "dotenv": "^9.0.2",
     "graphql": "^15.5.0",
     "graphql-compose": "^8.0.1",
-    "graphql-compose-mongoose": "^9.3.0",
+    "graphql-compose-mongoose": "^9.4.2",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
