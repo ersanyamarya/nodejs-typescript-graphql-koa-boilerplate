@@ -1,13 +1,14 @@
+import { ConnectOptions } from 'mongoose'
 import env from '../utils/env'
 
-export default {
-  mongodb: {
-    uri: env('MONGODB_CONNECTION_URL'),
-    options: {
-      useNewUrlParser: true,
-      useFindAndModify: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    },
-  },
+interface DatabaseConfig {
+  uri: string
+  options: ConnectOptions
 }
+
+const databaseConfig: DatabaseConfig = {
+  uri: env('MONGODB_CONNECTION_URL'),
+  options: {},
+}
+
+export default databaseConfig

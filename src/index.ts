@@ -19,7 +19,7 @@ type listenConfig = {
 const start = async (config: listenConfig, logger: Logger): Promise<void> => {
   exceptionExtension(logger)
   const mongoDB = connectMongoDB(logger)
-  const app = koaExtension(logger, { mongoDB: mongoDB.healthCheck })
+  const app = await koaExtension(logger, { mongoDB: mongoDB.healthCheck })
   const server = app
     .listen(config.port, async () => {
       logger.info(`Server listening on port ${config.port}`)

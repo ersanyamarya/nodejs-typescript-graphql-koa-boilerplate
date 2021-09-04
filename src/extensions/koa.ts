@@ -4,7 +4,7 @@ import cors from 'koa2-cors'
 import { Logger } from 'log4js'
 import serverConfig from '../config/server'
 import requestLoggerMiddleware from '../middlewares/request-logger'
-import server from './apollo'
+import apollo from './apollo'
 
 interface HealthCheck {
   connected?: boolean
@@ -15,7 +15,7 @@ type HealthChecks = {
   [service: string]: () => HealthCheck
 }
 
-export default (logger: Logger, healthChecks?: HealthChecks): Koa => {
+export default async (logger: Logger, healthChecks?: HealthChecks): Promise<Koa> => {
   const app = new Koa()
   app.use(requestLoggerMiddleware(logger))
   app.use(cors({ origin: '*' }))
@@ -40,8 +40,11 @@ export default (logger: Logger, healthChecks?: HealthChecks): Koa => {
     }
   })
 
-  router.post('/graphql', server().getMiddleware())
-  router.get('/graphql', server().getMiddleware())
+  const server = apollo()
+
+  await server.start()
+  router.post('/graphql', server.getMiddleware())
+  router.get('/graphql', server.getMiddleware())
   app.use(router.routes())
   app.use(router.allowedMethods())
   return app

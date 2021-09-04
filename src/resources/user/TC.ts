@@ -1,11 +1,8 @@
 import { schemaComposer } from 'graphql-compose'
 import { composeMongoose } from 'graphql-compose-mongoose'
-
-import logger from '../../utils/logger'
-
-import genSchema from '../../utils/schema-utils'
-
 import { Model } from 'mongoose'
+import logger from '../../utils/logger'
+import genSchema from '../../utils/schema-utils'
 
 function beforeUserCreate(resolver) {
   return resolver.wrapResolve(next => async rp => {
@@ -61,5 +58,5 @@ export default function getTC(UserModel: Model<any>): any {
 
   queries.userManyGroupByDate = UserTC.getResolver('userManyGroupByDate')
 
-  return { UserTC, queries, mutations }
+  return { ResourceTC: UserTC, queries, mutations }
 }

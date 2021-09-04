@@ -25,7 +25,7 @@ interface User extends Document {
 
 const UserModel = model<User>('User', UserSchema, 'users')
 
-const { UserTC, queries, mutations } = TC(UserModel)
+const { ResourceTC, queries, mutations } = TC(UserModel)
 
-export { UserModel, UserTC }
-export default { queries, mutations }
+export { UserModel, ResourceTC }
+export default { queries, mutations, ResourceTC }

@@ -2,13 +2,11 @@ import env from '../utils/env'
 
 export default {
   hostname: env('HOSTNAME'),
-  port: Number.parseInt(env('APPLICATION_PORT', '3000')),
-  healthPath: `${env('HEALTH_CHECK_PATH', '/health')}`,
-
+  port: Number.parseInt(env('APPLICATION_PORT')),
+  healthPath: `${env('HEALTH_CHECK_PATH')}`,
   log: {
-    level: env('LOG_LEVEL', 'info'),
+    level: env('LOG_LEVEL') || 'info',
   },
-
   env: {
     current: env('NODE_ENV'),
     is: {

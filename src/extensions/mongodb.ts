@@ -1,5 +1,5 @@
 import { Logger } from 'log4js'
-import Mongoose, { Connection, ConnectionOptions } from 'mongoose'
+import Mongoose, { Connection, ConnectOptions } from 'mongoose'
 import databaseConfig from '../config/database'
 
 const connectionStatus = ['Disconnected', 'Connected', 'Connecting', 'Disconnecting']
@@ -14,9 +14,9 @@ export type mongoDbExtension = {
 let connection: Connection
 
 export const connectMongoDB = (logger: Logger): mongoDbExtension => {
-  const uri = databaseConfig.mongodb.uri
+  const uri = databaseConfig.uri
 
-  const options: ConnectionOptions = databaseConfig.mongodb.options
+  const options: ConnectOptions = databaseConfig.options
   if (connection) {
     return
   }

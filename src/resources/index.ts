@@ -1,16 +1,17 @@
 import { schemaComposer } from 'graphql-compose'
 import mongoose from 'mongoose'
-
+import commonResolvers from './commonResolvers'
 import User from './user'
-import Game from './game'
 
 const RESOURCE_SCHEMAS = {
   User,
-  Game,
 }
 
 for (const name of mongoose.modelNames()) {
-  const { queries, mutations } = RESOURCE_SCHEMAS[name]
+  const model = mongoose.model(name)
+  const { queries, mutations, ResourceTC } = RESOURCE_SCHEMAS[name]
+  commonResolvers(model, ResourceTC, name, mutations)
+
   schemaComposer.Query.addFields(queries)
   schemaComposer.Mutation.addFields(mutations)
 }
