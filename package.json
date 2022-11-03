@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/ersanyamarya/nodejs-typescript-graphql-koa-boilerplate#readme",
   "dependencies": {
-    "apollo-server-koa": "^3.3.0",
+    "apollo-server-koa": "^3.11.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
     "graphql": "^15.5.2",
